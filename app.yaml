@@ -1,0 +1,22 @@
+env: flex
+runtime: custom
+api_version: 1
+
+service: yii-basic
+
+# env_variables:
+#   APPLICATION_ENV: "gae-test"
+#   GOOGLE_APPLICATION_CREDENTIALS: "/etc/gcloud/service-account.json"
+
+manual_scaling:
+  instances: 1
+
+resources:
+  cpu: 1
+  memory_gb: 1
+
+health_check:
+  enable_health_check: False
+  check_interval_sec: 8
+# beta_settings:
+#     cloud_sql_instances: 'CLOUD SQL INSTANCE ID'

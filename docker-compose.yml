@@ -1,0 +1,16 @@
+version: "2"
+services:
+  php:
+    image: php:8.2-apache
+    volumes:
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      - ./ports.conf:/etc/apache2/ports.conf
+      - ./:/app:delegated
+    ports:
+      - "8080:8080"
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
