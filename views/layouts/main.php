@@ -12,23 +12,6 @@ use yii\bootstrap5\NavBar;
 use yii\httpclient\Client;
 
 AppAsset::register($this);
-$client = new Client();
-
-$domain = Yii::$app->request->hostInfo;
-$port = parse_url($domain, PHP_URL_PORT);
-// $url = $domain . '/';
-
-$this->registerJs("
-    console.log('$domain,hello, $port');
-", \yii\web\View::POS_READY);
-
-Yii::info('Main page', __METHOD__);
-
-
-// $response = $client->createRequest()
-//     ->setMethod('GET')
-//     ->setUrl($url)
-//     ->send();
 
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');

@@ -127,16 +127,11 @@ class SiteController extends Controller
     }
 
     public function actionHealth()
-{
-    Yii::info('Received request for /health endpoint', __METHOD__);
-    
+    {
     Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     Yii::$app->response->data = ['status' => 'ok'];
-
-    Yii::info('Responded with 200 OK', __METHOD__);
-    
     return;
-}
+    }
 
 
 }
