@@ -11,6 +11,7 @@ class Firestore {
     public function __construct() {
         $this->db = new FirestoreClient([
             'projectId' => $this->projectId,
+            // 'database' => 'skanuj-wygrywaj' // to use different database we need change rules as in this database
         ]);
     }
 
