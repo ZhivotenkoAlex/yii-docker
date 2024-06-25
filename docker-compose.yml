@@ -8,9 +8,13 @@ services:
       - ./:/app:delegated
     ports:
       - "8080:8080"
+    # environment:
+    #   - GOOGLE_APPLICATION_CREDENTIALS=${FIREBASE_CONFIG}
   web:
     build: .
     ports:
       - "8080:8080"
     volumes:
       - .:/app
+    # environment:
+    #   - GOOGLE_APPLICATION_CREDENTIALS=${FIREBASE_CONFIG}

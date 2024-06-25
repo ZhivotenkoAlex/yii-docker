@@ -3,6 +3,16 @@ FROM php:8.2-apache
 # Install necessary PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
+# Install dependencies for gRPC
+RUN apt-get update && apt-get install -y \
+        libz-dev \
+        libssl-dev \
+        libc-ares-dev
+
+# Install gRPC
+RUN pecl install grpc \
+    && docker-php-ext-enable grpc
+
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
