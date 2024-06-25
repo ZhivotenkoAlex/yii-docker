@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../../db/db.php';
 /** @var yii\web\View $this */
 /** @var string $content */
 
@@ -10,13 +9,8 @@ use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
 use yii\httpclient\Client;
-use Google\Cloud\Firestore\FirestoreClient;
-use app\db\Firestore;
 
 AppAsset::register($this);
-$db = new Firestore();
- $users = $db->getDocuments('users');
- $user = $db->getDocumentById('users', 'GzXnJaxOKXcBFJS9qUTcrCz4Sal1');
 
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
@@ -32,12 +26,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-
-    <!--  Script tag to display the data in the browser's console -->
-    <script>
-        console.log('Document data:', <?php echo json_encode($users); ?>);
-        console.log('Document data:', <?php echo json_encode($user); ?>);
-    </script>
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
