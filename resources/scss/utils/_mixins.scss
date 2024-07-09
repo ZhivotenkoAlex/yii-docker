@@ -1,0 +1,31 @@
+@mixin max-width($point)
+{
+  @media screen and (max-width: 1px * $point)
+  {
+    @content;
+  }
+}
+
+@mixin min-width($point)
+{
+  @media screen and (min-width: 1px * $point)
+  {
+    @content;
+  }
+}
+
+@mixin menu-gradient($first, $second)
+{
+  background-image: -webkit-gradient(
+                  linear,
+                  left top,
+                  left bottom,
+                  color-stop(0, $first),
+                  color-stop(1, $second)
+  );
+  background-image: -o-linear-gradient(bottom, $first 0%, $second 100%);
+  background-image: -moz-linear-gradient(bottom, $first 0%, $second 100%);
+  background-image: -webkit-linear-gradient(bottom, $first 0%, $second 100%);
+  background-image: -ms-linear-gradient(bottom, $first 0%, $second 100%);
+  background-image: linear-gradient(to bottom, $first 0%, $second 100%);
+}

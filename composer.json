@@ -23,10 +23,18 @@
     "yiisoft/yii2": "~2.0.45",
     "yiisoft/yii2-bootstrap5": "~2.0.2",
     "yiisoft/yii2-symfonymailer": "~2.0.3",
+    "yiisoft/yii2-swiftmailer": "*",
+    "yiisoft/yii2-authclient": "*",
+    "pelock/yii2-imgopt": "*",
     "yiisoft/yii2-httpclient": "^2.0",
+    "yiisoft/yii2-jui": ">=2.0.7",
+    "yiisoft/yii2-debug": ">=2.0",
     "grpc/grpc": "^1.38",
     "google/protobuf": "^3.17",
-    "google/cloud-firestore": "^1.44"
+    "google/cloud-firestore": "^1.44",
+    "yiisoft/yii2-bootstrap4": "^2.0",
+    "vlucas/phpdotenv": "^5.6",
+    "google/auth": "^1.40"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
@@ -39,6 +47,22 @@
     "codeception/module-filesystem": "^3.0 || ^2.0 || ^1.1",
     "codeception/verify": "^3.0 || ^2.2",
     "symfony/browser-kit": "^6.0 || >=2.7 <=4.2.4"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "common\\tests\\": [
+        "common/tests/",
+        "common/tests/_support"
+      ],
+      "iulotka\\tests\\": [
+        "iulotka/tests/",
+        "iulotka/tests/_support"
+      ],
+      "gazetki\\tests\\": [
+        "gazetki/tests/",
+        "gazetki/tests/_support"
+      ]
+    }
   },
   "config": {
     "allow-plugins": {
@@ -62,6 +86,10 @@
     "yii\\composer\\Installer::postCreateProject": {
       "setPermission": [
         {
+          "gazetki/runtime": "0777",
+          "iulotka/runtime": "0777",
+          "gazetki/web/assets": "0777",
+          "iulotka/web/assets": "0777",
           "runtime": "0777",
           "web/assets": "0777",
           "yii": "0755"
@@ -70,7 +98,7 @@
     },
     "yii\\composer\\Installer::postInstall": {
       "generateCookieValidationKey": [
-        "config/web.php"
+        "common/config/main.php"
       ]
     }
   },

@@ -1,20 +1,51 @@
-version: "2"
+# version: "2"
+# services:
+#   php:
+#     image: php:8.2-apache
+#     volumes:
+#       - ~/.composer-docker/cache:/root/.composer/cache:delegated
+#       - ./ports.conf:/etc/apache2/ports.conf
+#       - ./:/app:delegated
+#     ports:
+#       - "8080:8080"
+# environment:
+#   - GOOGLE_APPLICATION_CREDENTIALS=${FIREBASE_CONFIG}
+# web:
+#   build: .
+#   ports:
+#     - "8081:8080"
+#   volumes:
+#     - .:/app
+# environment:
+#   - GOOGLE_APPLICATION_CREDENTIALS=${FIREBASE_CONFIG}
+
+version: "3.2"
+
 services:
-  php:
-    image: php:8.2-apache
+  frontend:
+    build: frontend
+    ports:
+      - 20080:8080
     volumes:
+      # Re-use local composer cache via host-volume
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./ports.conf:/etc/apache2/ports.conf
-      - ./:/app:delegated
+      # Mount source-code for development
+      - ./:/app
+
+  backend:
+    build: backend
     ports:
-      - "8080:8080"
-    # environment:
-    #   - GOOGLE_APPLICATION_CREDENTIALS=${FIREBASE_CONFIG}
-  web:
-    build: .
-    ports:
-      - "8080:8080"
+      - 21081:8080
     volumes:
-      - .:/app
-    # environment:
-    #   - GOOGLE_APPLICATION_CREDENTIALS=${FIREBASE_CONFIG}
+      # Re-use local composer cache via host-volume
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      # Mount source-code for development
+      - ./:/app
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=verysecret
+      - MYSQL_DATABASE=yii2advanced
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=''
